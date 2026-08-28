@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On the Pulse — Measurement, Data &amp; Privacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#111214;
+    --ink-soft:#5B5E66;
+    --ink-faint:#9A9CA3;
+    --line:#E5E6E8;
+    --line-strong:#111214;
+    --panel:#F5F5F6;
+    --teal:#0A6B57;
+    --red:#B3261E;
+    --gold:#8A5E00;
+    --maxw:1240px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  /* ============ HEADER ============ */
+  header{ border-bottom:1px solid var(--line-strong); }
+  .header-top{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:14px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+  }
+  .header-top b{color:var(--ink); font-weight:600;}
+
+  .header-main{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:8px 24px 26px;
+  }
+  .header-main h1{
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    font-weight:800;
+    letter-spacing:-0.03em;
+    margin:0 0 6px;
+  }
+  .header-main p{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    margin:0;
+    max-width:640px;
+  }
+
+  /* ============ NAV ============ */
+  .nav-wrap{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    padding:0 24px;
+    scrollbar-width:none;
+  }
+  nav::-webkit-scrollbar{display:none;}
+  nav a{
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    padding:14px 14px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  nav a:hover{color:var(--ink);}
+  nav a.active{color:var(--ink); border-bottom-color:var(--ink);}
+
+  /* ============ INTRO ============ */
+  .intro{
+    max-width:720px;
+    padding:40px 24px 8px;
+    margin:0 auto;
+  }
+  .intro p{ font-size:1.08rem; color:var(--ink); margin:0 0 16px; }
+  .intro p.soft{color:var(--ink-soft); font-size:0.98rem;}
+
+  /* ============ STAT ROW ============ */
+  .statrow{
+    max-width:var(--maxw);
+    margin:32px auto 0;
+    padding:28px 24px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:24px;
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .statrow .stat{border-left:3px solid var(--ink); padding-left:16px;}
+  .statrow .num{font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; display:block; line-height:1;}
+  .statrow .cap{font-size:12.5px; color:var(--ink-soft); margin-top:8px; display:block; line-height:1.4;}
+  .statrow .date{font-size:11px; color:var(--ink-faint); margin-top:8px; display:block; font-weight:600;}
+
+  /* ============ SECTION ============ */
+  section{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:52px 24px 12px;
+    scroll-margin-top:56px;
+  }
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:26px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .sec-head h2{ font-size:1.55rem; font-weight:800; letter-spacing:-0.02em; margin:0; }
+  .sec-tag{
+    font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    padding:4px 10px; color:#fff; border-radius:3px;
+  }
+  .tag-teal{background:var(--teal);}
+  .tag-red{background:var(--red);}
+  .tag-gold{background:var(--gold);}
+
+  /* ============ GRID OF CARDS ============ */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .card{
+    background:var(--bg);
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+  }
+  .card .date{
+    font-size:11.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--ink-faint); margin-bottom:10px;
+  }
+  .card h3{ font-size:1.12rem; font-weight:700; letter-spacing:-0.01em; line-height:1.3; margin:0 0 10px; }
+  .card .fact{ font-size:0.94rem; color:var(--ink); margin:0 0 12px; flex-grow:1; }
+  .card .plain{ background:var(--panel); padding:14px 16px; border-radius:4px; margin-bottom:14px; }
+  .card .plain .label{
+    font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft); display:block; margin-bottom:6px;
+  }
+  .card .plain p{ font-size:0.9rem; margin:0; color:var(--ink); line-height:1.5; }
+
+  .card .source-link{
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding-top:6px;
+    border-top:1px solid var(--line);
+    margin-top:auto;
+  }
+  .card .source-link:hover{ text-decoration:underline; }
+  .card .source-link .arrow{ font-size:13px; transition:transform 0.15s ease; }
+  .card .source-link:hover .arrow{ transform:translateX(2px); }
+  .card .source-name{ color:var(--ink-faint); font-weight:500; }
+
+  .cat-teal .card .plain .label{color:var(--teal);}
+  .cat-red .card .plain .label{color:var(--red);}
+  .cat-gold .card .plain .label{color:var(--gold);}
+
+  /* ============ PIN BUTTON ============ */
+  .card{ position:relative; }
+  .pin-btn{
+    position:absolute;
+    top:14px;
+    right:14px;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--ink-faint);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    opacity:0;
+    transform:scale(0.9);
+    transition:opacity 0.15s ease, transform 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .card:hover .pin-btn,
+  .pin-btn:focus-visible{
+    opacity:1;
+    transform:scale(1);
+  }
+  .pin-btn:hover{ border-color:var(--ink); color:var(--ink); }
+  .pin-btn.is-pinned{
+    opacity:1;
+    transform:scale(1);
+    background:var(--ink);
+    border-color:var(--ink);
+    color:#fff;
+  }
+  /* always show on touch devices, since hover doesn't exist */
+  @media (hover:none){
+    .pin-btn{ opacity:0.55; transform:scale(1); }
+    .pin-btn.is-pinned{ opacity:1; }
+  }
+  .card.just-pinned{ animation:flashPin 0.6s ease; }
+  @keyframes flashPin{
+    0%{ background:var(--panel); }
+    100%{ background:var(--bg); }
+  }
+
+  /* ============ HEADLINES (PINNED) STRIP ============ */
+  .headlines{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .headlines-inner{
+    border:2px solid var(--ink);
+    padding:20px 22px;
+    margin-top:28px;
+  }
+  .headlines-title{
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .headlines-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .headlines-save-row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .headlines-save-row input[type="text"]{
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:6px 9px;
+    font-family:'Inter', sans-serif;
+    font-size:0.8rem;
+    outline:none;
+    width:180px;
+    max-width:40vw;
+  }
+  .headlines-save-row input[type="text"]:focus{ border-color:var(--ink); }
+  .save-board-btn{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:4px;
+    padding:7px 12px;
+    font-family:'Inter', sans-serif;
+    font-size:0.78rem;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .save-board-btn:hover{ background:#000; }
+  .save-board-btn:disabled{ background:var(--ink-faint); cursor:default; }
+
+  .saved-boards{
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .saved-boards:empty{ display:none; margin:0; padding:0; border:none; }
+  .saved-boards-label{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 10px;
+  }
+  .board-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:8px 0;
+    border-bottom:1px dotted var(--line);
+  }
+  .board-row:last-child{ border-bottom:none; }
+  .board-info{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .board-name{ font-size:0.9rem; font-weight:700; color:var(--ink); }
+  .board-meta{ font-size:10.5px; color:var(--ink-faint); }
+  .board-actions{ display:flex; gap:6px; flex-shrink:0; }
+  .board-btn{
+    border:1px solid var(--line);
+    background:var(--bg);
+    border-radius:4px;
+    padding:5px 10px;
+    font-family:'Inter', sans-serif;
+    font-size:11.5px;
+    font-weight:600;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .board-btn:hover{ border-color:var(--ink); }
+  .board-btn.delete:hover{ border-color:var(--red); color:var(--red); }
+
+  .viewing-banner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    background:var(--panel);
+    padding:10px 14px;
+    border-radius:4px;
+    margin-bottom:14px;
+    font-size:0.85rem;
+  }
+  .viewing-banner b{ font-weight:700; }
+  .back-to-live-btn{
+    border:1px solid var(--ink);
+    background:var(--bg);
+    border-radius:4px;
+    padding:6px 12px;
+    font-family:'Inter', sans-serif;
+    font-size:11.5px;
+    font-weight:700;
+    cursor:pointer;
+    flex-shrink:0;
+  }
+  .back-to-live-btn:hover{ background:var(--ink); color:#fff; }
+  .headlines-title .dot{ width:6px; height:6px; border-radius:50%; background:var(--red); display:inline-block; }
+  .headlines-empty{
+    font-size:0.92rem;
+    color:var(--ink-faint);
+    font-style:italic;
+  }
+  .headlines-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:0;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .headline-item{
+    position:relative;
+    background:var(--bg);
+    padding:20px 20px 18px;
+    display:flex;
+    flex-direction:column;
+  }
+  .headline-item .hl-date{
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:8px;
+    padding-right:26px;
+  }
+  .headline-item .hl-title{
+    font-size:1.18rem;
+    font-weight:800;
+    letter-spacing:-0.015em;
+    line-height:1.26;
+    margin:0 0 10px;
+  }
+  .headline-item .hl-fact{
+    font-size:0.92rem;
+    color:var(--ink);
+    margin:0 0 12px;
+  }
+  .headline-item .hl-plain{ margin-bottom:14px; }
+  .headline-item .hl-plain .plain{
+    background:var(--panel);
+    padding:13px 15px;
+    border-radius:4px;
+  }
+  .headline-item .hl-plain .label{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:5px;
+  }
+  .headline-item .hl-plain p{ font-size:0.87rem; margin:0; color:var(--ink); line-height:1.48; }
+  .headline-item .hl-source{
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    padding-top:6px;
+    border-top:1px solid var(--line);
+    margin-top:auto;
+  }
+  .headline-item .hl-source:hover{ text-decoration:underline; }
+  .hl-unpin{
+    position:absolute;
+    top:16px;
+    right:16px;
+    flex-shrink:0;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg);
+    color:var(--ink-faint);
+    font-size:14px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hl-unpin:hover{ border-color:var(--red); color:var(--red); }
+
+
+  /* ============ FOOTER ============ */
+  footer{
+    max-width:var(--maxw);
+    margin:60px auto 0;
+    padding:32px 24px 48px;
+    border-top:1px solid var(--line-strong);
+  }
+  footer h4{
+    font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-soft); margin:0 0 12px;
+  }
+  footer p{ font-size:0.92rem; color:var(--ink-soft); max-width:680px; margin:0 0 20px; }
+  .footer-meta{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    font-size:11.5px; color:var(--ink-faint); font-weight:600;
+    padding-top:16px; border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <span><b>On the Pulse</b> — Industry Edition</span>
+    <span>Issue No. 07 — <b>Aug 26, 2026</b></span>
+  </div>
+  <div class="header-main">
+    <h1>On the Pulse</h1>
+    <p style="font-weight:600; margin-bottom:10px;">Industry news on data, measurement &amp; privacy</p>
+    <p>The last 30 days, dated and sourced — for anyone working across data, measurement and privacy in media and marketing. Every item links to its primary source.</p>
+  </div>
+</header>
+
+<div class="nav-wrap">
+  <nav id="sectionNav">
+    <a href="#ai-agents" class="active">AI &amp; Agents</a>
+    <a href="#impact">Measuring Marketing Impact</a>
+    <a href="#activation">Activation</a>
+    <a href="#market-structure">Market Structure</a>
+    <a href="#regulatory">Regulatory</a>
+    <a href="#effectiveness">Effectiveness</a>
+    <a href="#local">NZ / Local</a>
+  </nav>
+</div>
+
+<div class="headlines">
+  <div class="headlines-inner" id="headlinesBox">
+    <div class="headlines-top">
+      <p class="headlines-title"><span class="dot"></span> Pinned Headlines</p>
+      <div class="headlines-save-row" id="headlinesSaveRow">
+        <input type="text" id="boardNameInput" placeholder="Name this set…" maxlength="80">
+        <button class="save-board-btn" id="saveBoardBtn" type="button">💾 Save as version</button>
+      </div>
+    </div>
+    <div id="headlinesContent">
+      <p class="headlines-empty">Hover any story and click the pin icon to feature the full article here.</p>
+    </div>
+    <div class="saved-boards" id="savedBoardsBox"></div>
+  </div>
+</div>
+
+<div class="intro">
+  <p>This issue covers strictly the last 30 days — nothing older, nothing recycled from earlier in the year. AI agents are now planning, buying and reporting in one workspace, peer-reviewed research is challenging how much trust the industry should place in platform-reported numbers, AI-mediated discovery is reshaping what "attention" even means, and WARC (the World Advertising Research Center) published new evidence on the limits of social-first marketing.</p>
+  <p class="soft">Every card is dated and links directly to its primary source.</p>
+</div>
+
+<div class="statrow">
+  <div class="stat">
+    <span class="num">31</span>
+    <span class="cap">European markets where ChatGPT Ads is now live</span>
+    <span class="date">OPENAI — AUG 24, 2026</span>
+  </div>
+  <div class="stat">
+    <span class="num">1,306%</span>
+    <span class="cap">The overstatement in one platform-reported lift estimate versus true experimental results, per peer-reviewed research</span>
+    <span class="date">GORDON ET AL. — CITED AUG 2026</span>
+  </div>
+  <div class="stat">
+    <span class="num">$2.15B</span>
+    <span class="cap">Nielsen's price to acquire DoubleVerify, taking one of two major independent verification vendors off the public market</span>
+    <span class="date">NIELSEN — AUG 6, 2026</span>
+  </div>
+  <div class="stat">
+    <span class="num">3</span>
+    <span class="cap">Structural growth ceilings social-first marketing hits without brand-building, per new research from WARC (World Advertising Research Center)</span>
+    <span class="date">WARC — AUG 6, 2026</span>
+  </div>
+</div>
+
+<!-- ============ AI & AGENTS ============ -->
+<section id="ai-agents" class="cat-teal">
+  <div class="sec-head">
+    <h2>AI &amp; Agents</h2>
+    <span class="sec-tag tag-teal">Platforms</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-chatgpt-ads-goes-live-across-europe" data-title="ChatGPT Ads goes live across Europe" data-date="Aug 24, 2026 — San Francisco">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-chatgpt-ads-goes-live-across-europe', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 24, 2026 — San Francisco</div>
+      <h3>ChatGPT Ads goes live across Europe</h3>
+      <p class="fact">OpenAI opened ChatGPT Ads in 31 European markets, launching first through agency and technology partners after announcing the expansion on Aug 18.</p>
+      <div class="plain"><span class="label">Implication</span><p>Budget question, not a trend piece: a channel that didn't exist in most 2026 media plans now has European scale. CMOs will need a defensible answer for why this either is or isn't in next year's mix — 'we haven't evaluated it yet' will not survive a board question once a competitor's does.</p></div>
+      <a class="source-link" href="https://choice.marketing/blog/chatgpt-ads-2026-field-guide/" target="_blank" rel="noopener">Read source <span class="source-name">— Choice OMG</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-chatgpt-ads-gets-real-targeting-and-bidding" data-title="ChatGPT Ads gets real targeting and bidding" data-date="Aug 20, 2026 — San Francisco">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-chatgpt-ads-gets-real-targeting-and-bidding', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 20, 2026 — San Francisco</div>
+      <h3>ChatGPT Ads gets real targeting and bidding</h3>
+      <p class="fact">OpenAI added conversion-optimized bidding (oCPC), custom audiences from email/phone lists, and dropped its $50,000 minimum spend requirement.</p>
+      <div class="plain"><span class="label">Implication</span><p>The barrier that justified waiting — enterprise-only, high minimum spend — is gone. That removes the easiest excuse for deferring a test-and-learn budget line, and shifts the real question from 'can we afford to try this' to 'can we afford not to know how it performs before a competitor does.'</p></div>
+      <a class="source-link" href="https://choice.marketing/blog/chatgpt-ads-2026-field-guide/" target="_blank" rel="noopener">Read source <span class="source-name">— Choice OMG</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-meta-let-ai-agents-run-its-ad-platform-directly" data-title="Meta let AI agents run its ad platform directly" data-date="Aug 7, 2026 — Menlo Park">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-meta-let-ai-agents-run-its-ad-platform-directly', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 7, 2026 — Menlo Park</div>
+      <h3>Meta let AI agents run its ad platform directly</h3>
+      <p class="fact">Meta opened Ads Manager to AI agents through a first-party MCP server, and began AI-rewriting text baked into ad images without prompting advertisers.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is a governance and liability question before it's a media-buying one: if an AI agent commits budget or misconfigures a live account, no platform, agency or vendor contract has yet clarified where that liability sits. Any CMO or CDO permitting agent access to a live ad account should be asking legal and procurement that question now, not after an incident forces the answer.</p></div>
+      <a class="source-link" href="https://admakeai.com/blog/meta-ads-updates-august-2026" target="_blank" rel="noopener">Read source <span class="source-name">— AdMake AI</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-an-ai-agent-that-plans-measures-and-buys-media-in-one-conver" data-title="An AI agent that plans, measures and buys media in one conversational workspace" data-date="Aug 4, 2026 — New York">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-an-ai-agent-that-plans-measures-and-buys-media-in-one-conver', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 4, 2026 — New York</div>
+      <h3>An AI agent that plans, measures and buys media in one conversational workspace</h3>
+      <p class="fact">PulsePoint launched Hatch, unifying research and planning, audience intelligence, measurement, and programmatic activation into a single conversational AI workspace. Marketers describe what they need in plain language; Hatch interprets intent, configures itself, and returns campaign delivery, pacing, budget and performance answers from live data.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is a build-vs-buy signal for the marketing org chart, not just a product launch: functions that used to justify separate specialist headcount or agency line items — planning, audience building, measurement, activation — are being sold as one seat. Worth war-gaming what that does to agency fee structures and in-house team sizing over the next planning cycle, regardless of whether this specific vendor wins.</p></div>
+      <a class="source-link" href="https://agilebrandguide.com/yesterdays-marketing-technology-ai-news-august-5-2026/" target="_blank" rel="noopener">Read source <span class="source-name">— The Agile Brand Guide</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MEASURING MARKETING IMPACT ============ -->
+<section id="impact" class="cat-teal">
+  <div class="sec-head">
+    <h2>Measuring Marketing Impact</h2>
+    <span class="sec-tag tag-teal">Marketing Science &amp; Experimentation</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-platform-reported-lift-can-be-off-by-a-factor-of-13" data-title="Platform-reported lift can be off by a factor of 13, peer-reviewed research finds" data-date="Cited Aug 2026 — Academic research">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-platform-reported-lift-can-be-off-by-a-factor-of-13', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Cited Aug 2026 — Academic research</div>
+      <h3>Platform-reported lift can be off by a factor of 13, peer-reviewed research finds</h3>
+      <p class="fact">A widely-cited comparison of observational (platform-reported) versus randomized-experiment estimates of ad effectiveness found that in half of 15 Facebook experiments studied, observational estimates were off by a factor of three or more — in one case, a true 2.4% lift was reported observationally as 1,306%. A separate documented case put reported ROAS above 4,100% while the randomized experiment on the same spend returned minus 63%.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is ammunition for exactly the CFO conversation most marketing leaders are already losing: if platform-reported lift can overstate true impact by an order of magnitude, then any board-level ROI number sourced solely from platform dashboards is a defensibility risk, not just an optimism bias. The fix — independent experimentation, not better dashboards — is a budget line, not a reporting-cadence change.</p></div>
+      <a class="source-link" href="https://www.koji.so/blog/marketing-mix-modeling-vs-attribution-vs-incrementality-2026" target="_blank" rel="noopener">Read source <span class="source-name">— Koji, citing Gordon et al.</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-measuring-visibility-in-ai-search-is-now-its-own-software-cat" data-title="Measuring visibility in AI search is now its own software category" data-date="Aug 11, 2026 — Industry tracker">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-measuring-visibility-in-ai-search-is-now-its-own-software-cat', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 11, 2026 — Industry tracker</div>
+      <h3>Measuring visibility in AI search is now its own software category</h3>
+      <p class="fact">At least ten distinct tools (Profound, AthenaHQ, Peec AI, Otterly.ai, Knowatoa, Scrunch AI, Brandlight, Goodie AI, and AI-visibility add-ons from Ahrefs and Semrush) are now competing to measure how often and how accurately brands are cited inside ChatGPT, Perplexity, Gemini and Google's AI Overviews — each using a different methodology.</p>
+      <div class="plain"><span class="label">Implication</span><p>Before allocating budget to any AI-visibility vendor, know that the entire category has no agreed methodology yet — a spend decision here is a bet on one company's proprietary counting method, not on a benchmarked industry standard. Worth treating any vendor's visibility score the way a CFO would treat a projection with no audited methodology behind it.</p></div>
+      <a class="source-link" href="https://industry-lens.com/intelligence/ai-search" target="_blank" rel="noopener">Read source <span class="source-name">— IndustryLens</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACTIVATION ============ -->
+<section id="activation" class="cat-gold">
+  <div class="sec-head">
+    <h2>Activation</h2>
+    <span class="sec-tag tag-gold">Attention &amp; Media Consumption</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-ai-agents-are-becoming-a-second-audience-brands-write-for" data-title="AI agents are becoming a second audience brands write for" data-date="Early Aug 2026 — Industry analysis">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-ai-agents-are-becoming-a-second-audience-brands-write-for', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Early Aug 2026 — Industry analysis</div>
+      <h3>AI agents are becoming a second audience brands write for</h3>
+      <p class="fact">New industry analysis argues that content increasingly needs to serve two audiences at once: the human who eventually reads it, and the AI system — search engine, shopping agent, recommendation assistant — that decides whether to surface it at all. The recommendation is to write around explicit decision cues ("best for," "choose this when") that both people and AI systems can use to shortlist an option.</p>
+      <div class="plain"><span class="label">Implication</span><p>This changes what marketing is actually buying when it buys reach: a growing share of what used to be direct human exposure is now brokered by an AI system with its own selection logic, which means budget aimed purely at human attention may be increasingly mis-targeted regardless of channel. Worth a genuine strategy review, not a content-guidelines update.</p></div>
+      <a class="source-link" href="https://www.davlermedia.com/executive-marketing-brief-august-2026-edition/" target="_blank" rel="noopener">Read source <span class="source-name">— Davler Media</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-attention-is-being-redefined-from-proof-of-click-to-proof-of" data-title="Attention is being redefined from proof-of-click to proof-of-exposure" data-date="Early Aug 2026 — Industry-wide">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-attention-is-being-redefined-from-proof-of-click-to-proof-of', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Early Aug 2026 — Industry-wide</div>
+      <h3>Attention is being redefined from proof-of-click to proof-of-exposure</h3>
+      <p class="fact">Advertisers are increasingly able to build audiences from users who were simply shown an ad — with no click, site visit or consented identifier required — turning previously invisible mid-funnel exposure into a usable signal, industry analysis of 2026's media technology shortlist finds.</p>
+      <div class="plain"><span class="label">Implication</span><p>This quietly changes what counts as a paid outcome, which is a finance question as much as a media one: if impressions without action are treated as equivalent to genuine engagement in vendor reporting, budget can get allocated against a weaker signal than the CFO believes it's paying for. Worth confirming with any vendor exactly what their 'attention' or 'exposure' metric is actually counting before renewing that line item.</p></div>
+      <a class="source-link" href="https://www.adweek.com/brand-marketing/2026-tech-stack-awards-ai-data-marketing-technology/" target="_blank" rel="noopener">Read source <span class="source-name">— Adweek</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+<!-- ============ MARKET STRUCTURE ============ -->
+<section id="market-structure" class="cat-gold">
+  <div class="sec-head">
+    <h2>Market Structure</h2>
+    <span class="sec-tag tag-gold">Vendor Consolidation</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-nielsen-is-buying-doubleverify-for-2-15-billion" data-title="Nielsen is buying DoubleVerify for $2.15 billion" data-date="Aug 6, 2026 — New York">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-nielsen-is-buying-doubleverify-for-2-15-billion', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 6, 2026 — New York</div>
+      <h3>Nielsen is buying DoubleVerify for $2.15 billion</h3>
+      <p class="fact">Nielsen Holdings and DoubleVerify entered a definitive agreement for Nielsen to acquire DoubleVerify in an all-cash deal at $13.60/share, a 30% premium to DoubleVerify's 60-day average price. The combined company is expected to generate over $4 billion in pro forma revenue, expanding Nielsen's addressable market to $300B+. The deal is expected to close around Q1 2027, pending shareholder and regulatory approval.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is a direct vendor-risk event for any organisation relying on DoubleVerify for independent verification: one of only two vendors with genuine scale in that category is being absorbed into a larger holding company, reducing the number of truly arms-length options in the market. Worth a procurement review of measurement-vendor concentration risk now, not at next contract renewal.</p></div>
+      <a class="source-link" href="https://www.nielsen.com/news-center/2026/nielsen-to-acquire-doubleverify-creating-a-leading-independent-media-intelligence/" target="_blank" rel="noopener">Read source <span class="source-name">— Nielsen</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="regulatory" class="cat-red">
+  <div class="sec-head">
+    <h2>Regulatory</h2>
+    <span class="sec-tag tag-red">Data, AI, PII &amp; Consent</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-eu-makes-ai-content-labeling-law-not-policy" data-title="EU makes AI-content labeling law, not policy" data-date="Aug 2, 2026 — Brussels">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-eu-makes-ai-content-labeling-law-not-policy', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 2, 2026 — Brussels</div>
+      <h3>EU makes AI-content labeling law, not policy</h3>
+      <p class="fact">Article 50 of the EU AI Act took effect, requiring AI-generated synthetic content shown to EU users to carry a machine-readable marking, with deepfakes needing a distinguishable label.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is now a board-level compliance line item, not a marketing guideline: it's the first hard legal mandate for AI-content labeling anywhere in the world, and it applies regardless of who generated the content — the agency, the brand's own team, or a platform's AI tool. CDOs should confirm now whether existing content pipelines can actually produce the required disclosure, not assume creative or legal already has it covered.</p></div>
+      <a class="source-link" href="https://www.cinerads.com/blog/ai-ad-disclosure-requirements" target="_blank" rel="noopener">Read source <span class="source-name">— Cinerads</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-california-enabled-mass-data-broker-deletion" data-title="California enabled mass data-broker deletion" data-date="Aug 1, 2026 — Sacramento">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-california-enabled-mass-data-broker-deletion', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 1, 2026 — Sacramento</div>
+      <h3>California enabled mass data-broker deletion</h3>
+      <p class="fact">The Delete Act's centralised deletion system went live — one consumer request now removes their data from every registered California data broker at once.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is a data-supply risk to flag to whoever owns audience planning and budget: a single, centralised deletion mechanism shrinks the reliable pool of third-party and appended data industry-wide, which means any budget still allocated against broker-sourced audiences is funding a pool that's actively shrinking and getting less reliable in real time.</p></div>
+      <a class="source-link" href="https://cppa.ca.gov/announcements" target="_blank" rel="noopener">Read source <span class="source-name">— CPPA</span> <span class="arrow">→</span></a>
+    </div>
+    <div class="card" id="card-ico-enforcement-action-shows-what-reasonable-care-actually-m" data-title="ICO enforcement action shows what &quot;reasonable care&quot; actually means" data-date="Aug 2026 — London">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-ico-enforcement-action-shows-what-reasonable-care-actually-m', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 2026 — London</div>
+      <h3>ICO enforcement action shows what "reasonable care" actually means</h3>
+      <p class="fact">The ICO issued the Metropolitan Police Service with an enforcement notice and reprimand after an officer emailed 18 people affected by a sensitive case with all recipients visible in the "To" field, potentially exposing highly sensitive inferences about them.</p>
+      <div class="plain"><span class="label">Implication</span><p>This sets a precedent CDOs should route to legal immediately: liability turns on what can be inferred, not on whether personal data is technically named. Any organisation building or sharing lists from sensitive segments — health, legal, financial — carries the same exposure this enforcement action punished, regardless of sector.</p></div>
+      <a class="source-link" href="https://ico.org.uk/about-the-ico/media-centre/news-and-blogs/2026/08/metropolitan-police-service-issued-with-enforcement-notice-and-reprimand-following-data-protection-failures/" target="_blank" rel="noopener">Read source <span class="source-name">— UK ICO</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EFFECTIVENESS ============ -->
+<section id="effectiveness" class="cat-gold">
+  <div class="sec-head">
+    <h2>Effectiveness Research</h2>
+    <span class="sec-tag tag-gold">Evidence</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-social-first-marketing-has-a-growth-ceiling-new-research-fin" data-title="Social-first marketing has a growth ceiling, new research finds" data-date="Aug 6, 2026 — WARC (World Advertising Research Center)">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-social-first-marketing-has-a-growth-ceiling-new-research-fin', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 6, 2026 — WARC (World Advertising Research Center)</div>
+      <h3>Social-first marketing has a growth ceiling, new research finds</h3>
+      <p class="fact">WARC's "Pace Principle 2.0" finds that social and creator marketing — for all its speed and cultural relevance — hits three structural ceilings that no amount of additional content or paid media can break through without balancing it against longer-term brand-building.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is independent evidence a CMO can put directly in front of a board or CFO that's been pushing hard toward short-term, high-frequency social spend: the research comes from a source with no commercial stake in the channel-mix answer, which makes it more defensible in a budget conversation than anything from a platform with an obvious interest in the outcome.</p></div>
+      <a class="source-link" href="https://roastbrief.us/effectiveness-under-threat-in-shift-to-social-first-marketing/" target="_blank" rel="noopener">Read source <span class="source-name">— WARC via Roastbrief</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NZ / LOCAL ============ -->
+<section id="local" class="cat-teal">
+  <div class="sec-head">
+    <h2>NZ / Local</h2>
+    <span class="sec-tag tag-teal">Aotearoa</span>
+  </div>
+  <div class="grid">
+    <div class="card" id="card-nz-privacy-and-cyber-law-is-shifting-personal-liability-onto" data-title="NZ privacy and cyber law is shifting personal liability onto executives" data-date="Aug 7, 2026 — Auckland">
+      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-nz-privacy-and-cyber-law-is-shifting-personal-liability-onto', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
+      <div class="date">Aug 7, 2026 — Auckland</div>
+      <h3>NZ privacy and cyber law is shifting personal liability onto executives</h3>
+      <p class="fact">New Zealand legal analysis flags a new landscape of privacy penalties and personal liability under NZ cyber law, as regulatory expectations tighten around who is accountable when data protection fails.</p>
+      <div class="plain"><span class="label">Implication</span><p>This is the sharpest possible version of a board question a CDO or CMO in New Zealand should be raising proactively: liability is shifting toward the individual decision-maker, not just the organisation. Worth confirming personally, not assuming, that governance and sign-off structures have been updated to reflect that — waiting for legal to raise it first is the wrong order of operations.</p></div>
+      <a class="source-link" href="https://www.bellgully.com/insights/privacy-penalties-and-personal-liability-a-new-world-for-nz-cyber-laws/" target="_blank" rel="noopener">Read source <span class="source-name">— Bell Gully</span> <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h4>About this briefing</h4>
+  <p>On the Pulse is a strictly last-30-days news pull covering measurement, privacy and AI standards across NZ, Australia, the UK, the US and globally — for anyone working in data, measurement or privacy in media and marketing. Every item is sourced directly from a regulator, standards body, platform, or named publication — never from unverified vendor content — and links to its primary source.</p>
+  <div class="footer-meta">
+    <span>Published Aug 26, 2026</span>
+    <span>Covers Jul 26 – Aug 26, 2026</span>
+    <span>Next issue: Sep 9, 2026</span>
+  </div>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('#sectionNav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+  sections.forEach(sec => observer.observe(sec));
+
+  /* ============ PIN / HEADLINES ============ */
+  const PIN_KEY = 'otp_pinned_v1';
+  const BOARDS_KEY = 'otp_boards_v1';
+  const MAX_PINS = 6;
+
+  let viewingBoardId = null; // null = showing live pins; otherwise showing a saved board's snapshot
+
+  function getPinned(){
+    try{ return JSON.parse(localStorage.getItem(PIN_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function setPinned(arr){
+    localStorage.setItem(PIN_KEY, JSON.stringify(arr));
+  }
+
+  function getBoards(){
+    try{ return JSON.parse(localStorage.getItem(BOARDS_KEY)) || []; }
+    catch(e){ return []; }
+  }
+  function setBoards(arr){
+    localStorage.setItem(BOARDS_KEY, JSON.stringify(arr));
+  }
+
+  function extractCardSnapshot(id){
+    const card = document.getElementById(id);
+    if(!card) return null;
+    const sourceLink = card.querySelector('.source-link');
+    return {
+      date: card.getAttribute('data-date'),
+      titleHTML: card.querySelector('h3').innerHTML,
+      factHTML: card.querySelector('.fact').innerHTML,
+      planHTML: card.querySelector('.plain').innerHTML,
+      sourceHref: sourceLink ? sourceLink.getAttribute('href') : '#',
+      sourceHTML: sourceLink ? sourceLink.innerHTML : ''
+    };
+  }
+
+  function itemMarkup(item, unpinId){
+    const unpinBtn = unpinId
+      ? `<button class="hl-unpin" type="button" aria-label="Unpin this story" data-unpin="${unpinId}">×</button>`
+      : '';
+    return `
+      <article class="headline-item">
+        ${unpinBtn}
+        <div class="hl-date">${item.date}</div>
+        <h3 class="hl-title">${item.titleHTML}</h3>
+        <p class="hl-fact">${item.factHTML}</p>
+        <div class="hl-plain">${item.planHTML}</div>
+        <a class="source-link hl-source" href="${item.sourceHref}" target="_blank" rel="noopener">${item.sourceHTML}</a>
+      </article>
+    `;
+  }
+
+  function renderHeadlines(){
+    const content = document.getElementById('headlinesContent');
+    const saveRow = document.getElementById('headlinesSaveRow');
+
+    if(viewingBoardId){
+      const board = getBoards().find(b => b.id === viewingBoardId);
+      saveRow.style.display = 'none';
+      if(!board){
+        viewingBoardId = null;
+        return renderHeadlines();
+      }
+      const grid = board.items.map(item => itemMarkup(item, null)).join('');
+      content.innerHTML = `
+        <div class="viewing-banner">
+          <span>Viewing saved version: <b>${board.name}</b> — saved ${formatBoardTime(board.savedAt)}</span>
+          <button class="back-to-live-btn" id="backToLiveBtn" type="button">← Back to live pins</button>
+        </div>
+        <div class="headlines-grid">${grid}</div>
+      `;
+      document.getElementById('backToLiveBtn').addEventListener('click', () => {
+        viewingBoardId = null;
+        renderHeadlines();
+      });
+      return;
+    }
+
+    saveRow.style.display = 'flex';
+    const pinned = getPinned();
+    document.getElementById('saveBoardBtn').disabled = pinned.length === 0;
+
+    if(pinned.length === 0){
+      content.innerHTML = '<p class="headlines-empty">Hover any story and click the pin icon to feature the full article here.</p>';
+      renderSavedBoardsList();
+      return;
+    }
+    const grid = pinned.map(id => {
+      const snap = extractCardSnapshot(id);
+      return snap ? itemMarkup(snap, id) : '';
+    }).join('');
+    content.innerHTML = `<div class="headlines-grid">${grid}</div>`;
+
+    content.querySelectorAll('[data-unpin]').forEach(btn => {
+      btn.addEventListener('click', () => unpin(btn.getAttribute('data-unpin')));
+    });
+
+    renderSavedBoardsList();
+  }
+
+  function formatBoardTime(iso){
+    const d = new Date(iso);
+    if(isNaN(d)) return '';
+    return d.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+  }
+
+  function renderSavedBoardsList(){
+    const box = document.getElementById('savedBoardsBox');
+    const boards = getBoards();
+    if(boards.length === 0){
+      box.innerHTML = '';
+      return;
+    }
+    const sorted = [...boards].sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+    box.innerHTML = `
+      <p class="saved-boards-label">Saved versions</p>
+      ${sorted.map(b => `
+        <div class="board-row">
+          <div class="board-info">
+            <span class="board-name">${b.name}</span>
+            <span class="board-meta">${formatBoardTime(b.savedAt)} · ${b.items.length} ${b.items.length === 1 ? 'story' : 'stories'}</span>
+          </div>
+          <div class="board-actions">
+            <button class="board-btn" type="button" data-view="${b.id}">View</button>
+            <button class="board-btn delete" type="button" data-delete="${b.id}">Delete</button>
+          </div>
+        </div>
+      `).join('')}
+    `;
+    box.querySelectorAll('[data-view]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewingBoardId = btn.getAttribute('data-view');
+        renderHeadlines();
+      });
+    });
+    box.querySelectorAll('[data-delete]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-delete');
+        setBoards(getBoards().filter(b => b.id !== id));
+        if(viewingBoardId === id) viewingBoardId = null;
+        renderHeadlines();
+      });
+    });
+  }
+
+  function saveCurrentAsBoard(){
+    const nameInput = document.getElementById('boardNameInput');
+    const name = nameInput.value.trim();
+    const pinned = getPinned();
+    if(pinned.length === 0) return;
+    if(!name){
+      nameInput.focus();
+      return;
+    }
+    const items = pinned.map(id => extractCardSnapshot(id)).filter(Boolean);
+    const board = {
+      id: 'board-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
+      name,
+      savedAt: new Date().toISOString(),
+      items
+    };
+    const boards = getBoards();
+    boards.push(board);
+    setBoards(boards);
+    nameInput.value = '';
+    renderSavedBoardsList();
+  }
+
+  function syncButtonState(id){
+    const card = document.getElementById(id);
+    if(!card) return;
+    const btn = card.querySelector('.pin-btn');
+    const pinned = getPinned();
+    if(btn) btn.classList.toggle('is-pinned', pinned.includes(id));
+  }
+
+  function unpin(id){
+    let pinned = getPinned().filter(x => x !== id);
+    setPinned(pinned);
+    syncButtonState(id);
+    renderHeadlines();
+  }
+
+  function togglePin(id, btnEl){
+    let pinned = getPinned();
+    if(pinned.includes(id)){
+      pinned = pinned.filter(x => x !== id);
+    } else {
+      if(pinned.length >= MAX_PINS) pinned.shift();
+      pinned.push(id);
+      const card = document.getElementById(id);
+      if(card){
+        card.classList.add('just-pinned');
+        setTimeout(() => card.classList.remove('just-pinned'), 650);
+      }
+    }
+    setPinned(pinned);
+    if(btnEl) btnEl.classList.toggle('is-pinned', pinned.includes(id));
+    renderHeadlines();
+  }
+
+  document.getElementById('saveBoardBtn').addEventListener('click', saveCurrentAsBoard);
+  document.getElementById('boardNameInput').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') saveCurrentAsBoard();
+  });
+
+  // restore pin state on load
+  document.querySelectorAll('.card[id]').forEach(card => syncButtonState(card.id));
+  renderHeadlines();
+
+</script>
+
+</body>
+</html>
