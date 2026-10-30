@@ -3,943 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>On the Pulse — Measurement, Data &amp; Privacy</title>
+<title>On the Pulse — 29 October</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --bg:#FFFFFF;
-    --ink:#111214;
-    --ink-soft:#5B5E66;
-    --ink-faint:#9A9CA3;
-    --line:#E5E6E8;
-    --line-strong:#111214;
-    --panel:#F5F5F6;
-    --teal:#0A6B57;
-    --red:#B3261E;
-    --gold:#8A5E00;
-    --maxw:1240px;
-  }
+:root{
+  --bg:#0f1110;
+  --panel:#171a18;
+  --line:#2a2f2b;
+  --fg:#e9ece6;
+  --muted:#9aa39b;
+  --lime:#5eb8f2;
+  --warn:#f2b84a;
+  --ink:#0f1110;
+  --ink-soft:#131c22;
+  --display:"Hanken Grotesk", "Arial Narrow", sans-serif;
+  --body:"Newsreader", Georgia, serif;
+  --mono:"JetBrains Mono", monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0; background:var(--bg); color:var(--fg);}
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+  padding:48px 28px 80px;
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  background:var(--bg);
+  color:var(--fg);
+}
+.mast{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+  margin-bottom:28px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  flex-wrap:wrap;
+  gap:6px;
+}
+.mast b{color:var(--lime); font-weight:500;}
+.kicker{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--lime);
+  margin-bottom:10px;
+}
+h1{
+  font-family:var(--display);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  font-size:clamp(30px,5vw,42px);
+  line-height:1.08;
+  margin:0 0 14px;
+  color:var(--fg);
+}
+h1 span{color:var(--lime);}
+.byline{
+  font-family:var(--mono);
+  font-size:11.5px;
+  color:var(--muted);
+  letter-spacing:.04em;
+  margin-bottom:26px;
+}
+.lede{
+  font-size:17px;
+  color:var(--fg);
+  border-left:2px solid var(--lime);
+  padding-left:16px;
+  margin:0 0 36px;
+}
+.greeting{font-family:var(--display); font-weight:600; font-size:15px; color:var(--muted); margin-bottom:4px;}
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+h2{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--lime);
+  margin:44px 0 18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+}
+h2 .count{font-family:var(--mono); color:var(--muted); font-size:11px; text-transform:none; letter-spacing:0;}
 
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-size:16px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
+.item{margin:0 0 26px; padding-bottom:22px; border-bottom:1px solid var(--line);}
+.item:last-child{border-bottom:none;}
+.item h3{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:18.5px;
+  line-height:1.3;
+  margin:0 0 8px;
+  color:var(--fg);
+}
+.item h3 .no{
+  font-family:var(--mono);
+  font-weight:500;
+  color:var(--muted);
+  font-size:13px;
+  margin-right:8px;
+}
+.item p{margin:0 0 8px; color:var(--fg);}
+.label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-right:8px;
+}
+.label.imp{color:var(--warn);}
+.src-inline{font-family:var(--mono); font-size:11px; color:var(--muted);}
+.src-inline a{color:var(--muted); text-decoration:underline; text-decoration-color:var(--line);}
+.src-inline a:hover{color:var(--lime);}
 
-  a{color:inherit; text-decoration:none;}
+.quiet{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:16px 18px;
+  font-size:14.5px;
+  color:var(--muted);
+  font-family:var(--body);
+}
+.quiet strong{color:var(--fg);}
 
-  /* ============ HEADER ============ */
-  header{ border-bottom:1px solid var(--line-strong); }
-  .header-top{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:14px 24px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:12.5px;
-    color:var(--ink-soft);
-    letter-spacing:0.02em;
-  }
-  .header-top b{color:var(--ink); font-weight:600;}
+.stats-row{display:flex; flex-wrap:wrap; gap:14px; margin:4px 0 28px;}
+.stat{flex:1 1 150px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px;}
+.stat .n{font-family:var(--display); font-weight:800; font-size:26px; color:var(--lime); line-height:1;}
+.stat .l{font-family:var(--mono); font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:4px; display:block;}
 
-  .header-main{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:8px 24px 26px;
-  }
-  .header-main h1{
-    font-size:clamp(2.2rem, 5vw, 3.4rem);
-    font-weight:800;
-    letter-spacing:-0.03em;
-    margin:0 0 6px;
-  }
-  .header-main p{
-    font-size:1.05rem;
-    color:var(--ink-soft);
-    margin:0;
-    max-width:640px;
-  }
+.rec{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:20px 22px; margin-bottom:16px;}
+.rec h4{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--lime);
+  margin:0 0 12px;
+}
+.rec ol,.rec ul{margin:0; padding-left:20px; color:var(--fg);}
+.rec li{margin-bottom:8px; font-size:14.5px; line-height:1.5;}
+.rec li:last-child{margin-bottom:0;}
 
-  /* ============ NAV ============ */
-  .nav-wrap{
-    position:sticky;
-    top:0;
-    z-index:40;
-    background:var(--bg);
-    border-bottom:1px solid var(--line);
-  }
-  nav{
-    max-width:var(--maxw);
-    margin:0 auto;
-    display:flex;
-    gap:2px;
-    overflow-x:auto;
-    padding:0 24px;
-    scrollbar-width:none;
-  }
-  nav::-webkit-scrollbar{display:none;}
-  nav a{
-    font-size:13.5px;
-    font-weight:600;
-    color:var(--ink-soft);
-    padding:14px 14px;
-    white-space:nowrap;
-    border-bottom:2px solid transparent;
-    transition:color 0.15s ease, border-color 0.15s ease;
-  }
-  nav a:hover{color:var(--ink);}
-  nav a.active{color:var(--ink); border-bottom-color:var(--ink);}
+.take{
+  background:var(--ink-soft);
+  border:1px solid #1f3542;
+  border-left:3px solid var(--lime);
+  border-radius:8px;
+  padding:20px 22px;
+  margin:28px 0;
+}
+.take .label-take{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--lime); display:block; margin-bottom:10px;}
+.take p{margin:0 0 10px; font-size:15px;}
+.take p:last-child{margin-bottom:0;}
 
-  /* ============ INTRO ============ */
-  .intro{
-    max-width:720px;
-    padding:40px 24px 8px;
-    margin:0 auto;
-  }
-  .intro p{ font-size:1.08rem; color:var(--ink); margin:0 0 16px; }
-  .intro p.soft{color:var(--ink-soft); font-size:0.98rem;}
+.sign{margin-top:36px; font-family:var(--body); font-style:italic; color:var(--muted);}
+.sign .role{display:block; font-style:normal; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
 
-  /* ============ STAT ROW ============ */
-  .statrow{
-    max-width:var(--maxw);
-    margin:32px auto 0;
-    padding:28px 24px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-    gap:24px;
-    border-top:1px solid var(--line-strong);
-    border-bottom:1px solid var(--line-strong);
-  }
-  .statrow .stat{border-left:3px solid var(--ink); padding-left:16px;}
-  .statrow .num{font-size:2.2rem; font-weight:800; letter-spacing:-0.02em; display:block; line-height:1;}
-  .statrow .cap{font-size:12.5px; color:var(--ink-soft); margin-top:8px; display:block; line-height:1.4;}
-  .statrow .date{font-size:11px; color:var(--ink-faint); margin-top:8px; display:block; font-weight:600;}
+.src{margin-top:52px; padding-top:20px; border-top:1px solid var(--line);}
+.src h4{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 12px;}
+.src ol{margin:0; padding-left:20px; font-family:var(--mono); font-size:11.5px; color:var(--muted); line-height:1.7;}
+.src a{color:var(--muted); text-decoration:underline; text-decoration-color:var(--line);}
+.src a:hover{color:var(--lime);}
 
-  /* ============ SECTION ============ */
-  section{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:52px 24px 12px;
-    scroll-margin-top:56px;
-  }
-  .sec-head{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    border-bottom:2px solid var(--ink);
-    padding-bottom:14px;
-    margin-bottom:26px;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  .sec-head h2{ font-size:1.55rem; font-weight:800; letter-spacing:-0.02em; margin:0; }
-  .sec-tag{
-    font-size:11.5px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
-    padding:4px 10px; color:#fff; border-radius:3px;
-  }
-  .tag-teal{background:var(--teal);}
-  .tag-red{background:var(--red);}
-  .tag-gold{background:var(--gold);}
-
-  /* ============ GRID OF CARDS ============ */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .card{
-    background:var(--bg);
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-  }
-  .card .date{
-    font-size:11.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
-    color:var(--ink-faint); margin-bottom:10px;
-  }
-  .card h3{ font-size:1.12rem; font-weight:700; letter-spacing:-0.01em; line-height:1.3; margin:0 0 10px; }
-  .card .fact{ font-size:0.94rem; color:var(--ink); margin:0 0 12px; flex-grow:1; }
-  .card .plain{ background:var(--panel); padding:14px 16px; border-radius:4px; margin-bottom:14px; }
-  .card .plain .label{
-    font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    color:var(--ink-soft); display:block; margin-bottom:6px;
-  }
-  .card .plain p{ font-size:0.9rem; margin:0; color:var(--ink); line-height:1.5; }
-
-  .card .source-link{
-    font-size:12px;
-    font-weight:600;
-    color:var(--ink);
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    padding-top:6px;
-    border-top:1px solid var(--line);
-    margin-top:auto;
-  }
-  .card .source-link:hover{ text-decoration:underline; }
-  .card .source-link .arrow{ font-size:13px; transition:transform 0.15s ease; }
-  .card .source-link:hover .arrow{ transform:translateX(2px); }
-  .card .source-name{ color:var(--ink-faint); font-weight:500; }
-
-  .cat-teal .card .plain .label{color:var(--teal);}
-  .cat-red .card .plain .label{color:var(--red);}
-  .cat-gold .card .plain .label{color:var(--gold);}
-
-  /* ============ PIN BUTTON ============ */
-  .card{ position:relative; }
-  .pin-btn{
-    position:absolute;
-    top:14px;
-    right:14px;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    background:var(--bg);
-    color:var(--ink-faint);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    opacity:0;
-    transform:scale(0.9);
-    transition:opacity 0.15s ease, transform 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-  }
-  .card:hover .pin-btn,
-  .pin-btn:focus-visible{
-    opacity:1;
-    transform:scale(1);
-  }
-  .pin-btn:hover{ border-color:var(--ink); color:var(--ink); }
-  .pin-btn.is-pinned{
-    opacity:1;
-    transform:scale(1);
-    background:var(--ink);
-    border-color:var(--ink);
-    color:#fff;
-  }
-  /* always show on touch devices, since hover doesn't exist */
-  @media (hover:none){
-    .pin-btn{ opacity:0.55; transform:scale(1); }
-    .pin-btn.is-pinned{ opacity:1; }
-  }
-  .card.just-pinned{ animation:flashPin 0.6s ease; }
-  @keyframes flashPin{
-    0%{ background:var(--panel); }
-    100%{ background:var(--bg); }
-  }
-
-  /* ============ HEADLINES (PINNED) STRIP ============ */
-  .headlines{
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:0 24px;
-  }
-  .headlines-inner{
-    border:2px solid var(--ink);
-    padding:20px 22px;
-    margin-top:28px;
-  }
-  .headlines-title{
-    font-size:11.5px;
-    font-weight:700;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    margin:0;
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .headlines-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:14px;
-  }
-  .headlines-save-row{
-    display:flex;
-    gap:8px;
-    align-items:center;
-  }
-  .headlines-save-row input[type="text"]{
-    border:1px solid var(--line);
-    border-radius:4px;
-    padding:6px 9px;
-    font-family:'Inter', sans-serif;
-    font-size:0.8rem;
-    outline:none;
-    width:180px;
-    max-width:40vw;
-  }
-  .headlines-save-row input[type="text"]:focus{ border-color:var(--ink); }
-  .save-board-btn{
-    background:var(--ink);
-    color:#fff;
-    border:none;
-    border-radius:4px;
-    padding:7px 12px;
-    font-family:'Inter', sans-serif;
-    font-size:0.78rem;
-    font-weight:700;
-    cursor:pointer;
-    white-space:nowrap;
-  }
-  .save-board-btn:hover{ background:#000; }
-  .save-board-btn:disabled{ background:var(--ink-faint); cursor:default; }
-
-  .saved-boards{
-    margin-top:18px;
-    padding-top:14px;
-    border-top:1px solid var(--line);
-  }
-  .saved-boards:empty{ display:none; margin:0; padding:0; border:none; }
-  .saved-boards-label{
-    font-size:10.5px;
-    font-weight:700;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
-    margin:0 0 10px;
-  }
-  .board-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    padding:8px 0;
-    border-bottom:1px dotted var(--line);
-  }
-  .board-row:last-child{ border-bottom:none; }
-  .board-info{ display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .board-name{ font-size:0.9rem; font-weight:700; color:var(--ink); }
-  .board-meta{ font-size:10.5px; color:var(--ink-faint); }
-  .board-actions{ display:flex; gap:6px; flex-shrink:0; }
-  .board-btn{
-    border:1px solid var(--line);
-    background:var(--bg);
-    border-radius:4px;
-    padding:5px 10px;
-    font-family:'Inter', sans-serif;
-    font-size:11.5px;
-    font-weight:600;
-    cursor:pointer;
-    color:var(--ink);
-  }
-  .board-btn:hover{ border-color:var(--ink); }
-  .board-btn.delete:hover{ border-color:var(--red); color:var(--red); }
-
-  .viewing-banner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-    background:var(--panel);
-    padding:10px 14px;
-    border-radius:4px;
-    margin-bottom:14px;
-    font-size:0.85rem;
-  }
-  .viewing-banner b{ font-weight:700; }
-  .back-to-live-btn{
-    border:1px solid var(--ink);
-    background:var(--bg);
-    border-radius:4px;
-    padding:6px 12px;
-    font-family:'Inter', sans-serif;
-    font-size:11.5px;
-    font-weight:700;
-    cursor:pointer;
-    flex-shrink:0;
-  }
-  .back-to-live-btn:hover{ background:var(--ink); color:#fff; }
-  .headlines-title .dot{ width:6px; height:6px; border-radius:50%; background:var(--red); display:inline-block; }
-  .headlines-empty{
-    font-size:0.92rem;
-    color:var(--ink-faint);
-    font-style:italic;
-  }
-  .headlines-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-    gap:0;
-    background:var(--line);
-    border:1px solid var(--line);
-  }
-  .headline-item{
-    position:relative;
-    background:var(--bg);
-    padding:20px 20px 18px;
-    display:flex;
-    flex-direction:column;
-  }
-  .headline-item .hl-date{
-    font-size:10.5px;
-    font-weight:700;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    color:var(--ink-faint);
-    margin-bottom:8px;
-    padding-right:26px;
-  }
-  .headline-item .hl-title{
-    font-size:1.18rem;
-    font-weight:800;
-    letter-spacing:-0.015em;
-    line-height:1.26;
-    margin:0 0 10px;
-  }
-  .headline-item .hl-fact{
-    font-size:0.92rem;
-    color:var(--ink);
-    margin:0 0 12px;
-  }
-  .headline-item .hl-plain{ margin-bottom:14px; }
-  .headline-item .hl-plain .plain{
-    background:var(--panel);
-    padding:13px 15px;
-    border-radius:4px;
-  }
-  .headline-item .hl-plain .label{
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--ink-soft);
-    display:block;
-    margin-bottom:5px;
-  }
-  .headline-item .hl-plain p{ font-size:0.87rem; margin:0; color:var(--ink); line-height:1.48; }
-  .headline-item .hl-source{
-    font-size:11.5px;
-    font-weight:600;
-    color:var(--ink);
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    padding-top:6px;
-    border-top:1px solid var(--line);
-    margin-top:auto;
-  }
-  .headline-item .hl-source:hover{ text-decoration:underline; }
-  .hl-unpin{
-    position:absolute;
-    top:16px;
-    right:16px;
-    flex-shrink:0;
-    width:24px;
-    height:24px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    background:var(--bg);
-    color:var(--ink-faint);
-    font-size:14px;
-    line-height:1;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .hl-unpin:hover{ border-color:var(--red); color:var(--red); }
-
-
-  /* ============ FOOTER ============ */
-  footer{
-    max-width:var(--maxw);
-    margin:60px auto 0;
-    padding:32px 24px 48px;
-    border-top:1px solid var(--line-strong);
-  }
-  footer h4{
-    font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
-    color:var(--ink-soft); margin:0 0 12px;
-  }
-  footer p{ font-size:0.92rem; color:var(--ink-soft); max-width:680px; margin:0 0 20px; }
-  .footer-meta{
-    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
-    font-size:11.5px; color:var(--ink-faint); font-weight:600;
-    padding-top:16px; border-top:1px solid var(--line);
-  }
+.note{font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:28px; font-style:italic;}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <span><b>On the Pulse</b> — Industry Edition</span>
-    <span>Issue No. 09 — <b>Oct 30, 2026</b></span>
-  </div>
-  <div class="header-main">
-    <h1>On the Pulse</h1>
-    <p style="font-weight:600; margin-bottom:10px;">Industry news on data, measurement &amp; privacy</p>
-    <p>The last 30 days, dated and sourced — for anyone working across data, measurement and privacy in media and marketing. Every item links to its primary source.</p>
-  </div>
-</header>
+<div class="wrap">
 
-<div class="nav-wrap">
-  <nav id="sectionNav">
-    <a href="#ai-agents" class="active">AI &amp; Agents</a>
-    <a href="#impact">Measuring Marketing Impact</a>
-    <a href="#platforms">Data &amp; Cloud Platforms</a>
-    <a href="#activation">Activation</a>
-    <a href="#market-structure">Market Structure</a>
-    <a href="#regulatory">Regulatory</a>
-    <a href="#effectiveness">Effectiveness</a>
-    <a href="#local">NZ / Local</a>
-  </nav>
+  <div class="mast">
+    <span>On the Pulse</span>
+    <span><b>29 October 2026</b> · window 29 Sept – 29 Oct</span>
+  </div>
+
+  <div class="kicker">On the Pulse · Monthly</div>
+  <h1>AI labs kept shipping. Google quietly took <span>control.</span></h1>
+  <div class="byline">Debbie · Period: 29 September – 29 October 2026</div>
+
+  <div class="greeting">Kia ora,</div>
+  <p class="lede">Here's the one-line version: OpenAI and Anthropic both released new things this month, nothing in our stack broke, but Google quietly moved who controls your measurement data from Analytics into Ads. That's the one to actually act on. Everything else below is useful context.</p>
+
+  <h2>What the AI companies did <span class="count">6 things</span></h2>
+
+  <div class="item">
+    <h3><span class="no">01</span>ChatGPT's free tier is now running on GPT‑6</h3>
+    <p><span class="label">What happened</span>On 7–8 October, OpenAI switched the model behind unlimited free chats from GPT‑5.6 to GPT‑6. No price change — just a swap under the hood, plus a visual refresh.</p>
+    <p><span class="label imp">Why it matters</span>This is the first time GPT‑6 has reached everyday ChatGPT users, not just developers testing it early. If you've built anything that relies on how ChatGPT responds — a demo, a comparison, a brief — it's worth checking it still behaves the way you expect. The model changed quietly; nobody got a notification about it.</p>
+    <p class="src-inline">Source: <a href="https://pricingsaas.com/companies/openai/diffs/2026D281" target="_blank" rel="noopener">pricingsaas.com product-change tracker, 8 Oct</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">02</span>Anthropic shipped a lot of small things, not one big one</h3>
+    <p><span class="label">What happened</span>Eight separate releases through October, no headline model: a fast small model (Claude Haiku 5.5, 7 Oct); Docs, Slides and Design made free for everyone (8 Oct); Claude Dashboards and Claude Motion entering beta the same day (more on Dashboards below); a Code Review tool went fully live for Team/Enterprise plans (15 Oct); a new "Duet" feature opened a waitlist (21 Oct); a security product went into beta (21 Oct); and the Agent Skills format was handed over to an open-source foundation (22 Oct).</p>
+    <p><span class="label imp">Why it matters</span>This is Anthropic polishing the product, not chasing a bigger number. The one to actually try: Docs, Slides and Design are now free, so it's worth testing whether Claude can take over a real deliverable instead of just drafting it.</p>
+    <p class="src-inline">Source: <a href="https://www.orcarouter.ai/blog/claude-news-what-anthropic-shipped-in-october-2026" target="_blank" rel="noopener">OrcaRouter, Anthropic shipped-in-October roundup</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">03</span>Claude Dashboards — the one worth a proper look</h3>
+    <p><span class="label">What it is</span>You connect your data (Snowflake, Databricks, Redshift, ClickHouse, or Claude's existing connectors like Salesforce), describe what you want in plain English, and Claude builds a live dashboard. Click any number and it shows you the query behind it — or just asks Claude to explain the number in words if you don't read SQL. Charts refresh as the underlying data changes, with a timestamp on each one.</p>
+    <p><span class="label imp">Why it matters to us</span>It's built to sit alongside BI tools, not replace them — dashboards can be pushed into Grafana, Hex, Mixpanel, monday.com, Omni, PostHog and Sigma, with Looker, Tableau and Perplexity support coming later. It's the clearest sign yet that Anthropic wants Claude sitting on top of a company's data warehouse — worth keeping an eye on whether a Looker Studio or other enterprise BI connector shows up, or whether Claude's own dashboarding grows enough enterprise BI capability to matter here. On sharing: each viewer's own data access controls what they see, and on Enterprise it's off by default until an admin turns it on — worth checking our Enterprise settings if anyone wants to trial it.</p>
+    <p class="src-inline">Source: <a href="https://thenewstack.io/claude-dashboards-data-motion/" target="_blank" rel="noopener">The New Stack</a> · <a href="https://www.thestar.com.my/tech/tech-news/2026/10/09/anthropic-launches-dashboard-animation-tools-for-claude" target="_blank" rel="noopener">The Star</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">04</span>Anthropic also gave away a slice of the company</h3>
+    <p><span class="label">What happened</span>On 18 October, Anthropic set aside 5% of company shares into a separate fund for public-benefit purposes (still needs shareholder sign-off), with more available later if the company's value keeps rising.</p>
+    <p><span class="label imp">Why it matters</span>Not a product change — more of a reputation move. Worth knowing in case it comes up in a conversation about which AI companies to trust.</p>
+    <p class="src-inline">Source: <a href="https://www.orcarouter.ai/blog/claude-news-what-anthropic-shipped-in-october-2026" target="_blank" rel="noopener">OrcaRouter, Anthropic shipped-in-October roundup</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">05</span>Grok 5 was talked about, not shipped</h3>
+    <p><span class="label">What happened</span>Elon Musk has repeated a figure for a much larger Grok model through October, but nothing has shipped yet. Betting markets price it at roughly 86% odds of arriving sometime before 2027.</p>
+    <p><span class="label imp">Why it matters</span>Nothing to act on yet — just keeping it on the radar.</p>
+    <p class="src-inline">Source: <a href="https://simplefunctions.dev/answer/grok-grok5" target="_blank" rel="noopener">simplefunctions.dev prediction market</a></p>
+  </div>
+
+  <h2>How companies are actually using AI agents <span class="count">2 reports</span></h2>
+
+  <div class="stats-row">
+    <div class="stat"><span class="n">54%</span><span class="l">Of companies have AI agents running</span></div>
+    <div class="stat"><span class="n">25%</span><span class="l">Actually measure if they're working</span></div>
+    <div class="stat"><span class="n">80%</span><span class="l">Say they're seeing real value</span></div>
+    <div class="stat"><span class="n">46%</span><span class="l">Say integration is the hard part now</span></div>
+  </div>
+
+  <div class="item">
+    <p>Two surveys, same story. A Liferay study of 500 US companies found 54% are running AI agents (72% in tech, down to 24% in education) — but only 25% measure whether they're actually working, and only 24% have a company-wide policy on using AI at all.</p>
+    <p>Anthropic's own survey of agent users backs this up: the model itself isn't the problem anymore. People now say the hard part is plugging it into existing systems (46%), getting at clean data (42%), and security (40%). The good news: 80% say they're already seeing a real return.</p>
+    <p><span class="label imp">Why it matters</span>This is the gap that shows up constantly — everyone's running something, almost nobody can prove it's working. If this becomes something we explore with a company in future, building the measurement framework and weighing cost against benefit for any agent pilot is already part of our methodology.</p>
+    <p class="src-inline">Sources: <a href="https://www.cmswire.com/the-wire/new-liferay-study-finds-54-of-companies-are-running-ai-agents-yet-only-25-measure-their-impact/" target="_blank" rel="noopener">CMSWire on the Liferay report</a> · <a href="https://arcade.dev/blog/5-takeaways-2026-state-of-ai-agents-claude" target="_blank" rel="noopener">Arcade.dev on Anthropic's State of AI Agents Report</a></p>
+  </div>
+
+  <h2>What changed in our Google stack <span class="count">4 things</span></h2>
+
+  <div class="item">
+    <h3><span class="no">06</span>Google Ads now controls your consent and IP data, not GA4</h3>
+    <p><span class="label">What happened</span>Google has been shifting consent settings and IP address data out of Analytics and into the linked Ads account. IPs are now encrypted and sent straight to Ads, and this consolidation keeps rolling through the rest of 2026.</p>
+    <p><span class="label imp">Why it matters</span>If anyone ever checks a company's consent or IP setup, the Ads account is now where to look — not just the GA4 property. The control has genuinely moved.</p>
+    <p class="src-inline">Source: <a href="https://support.google.com/analytics/answer/17016975" target="_blank" rel="noopener">support.google.com/analytics</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">07</span>Tag Manager's biggest change in years landed — then everything went quiet</h3>
+    <p><span class="label">What happened</span>Google standardised how tags configure themselves across Tag Manager on 8 October, with a follow-up tweak on 12 October. Simo Ahava (the GTM expert everyone in our field reads) called it the biggest Tag Manager change in a decade. Nothing new since.</p>
+    <p><span class="label imp">Why it matters</span>Good time to finish any GTM migration work on our books while things are stable — check container setups against the new behaviour this fortnight, before the next change lands.</p>
+    <p class="src-inline">Source: <a href="https://simoahava.com/analytics/optimized-tagging-experience-google-tag-manager/" target="_blank" rel="noopener">simoahava.com</a> · <a href="https://support.google.com/tagmanager/answer/4620708" target="_blank" rel="noopener">support.google.com/tagmanager</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">08</span>BigQuery had its busiest month yet for AI features</h3>
+    <p><span class="label">What happened</span>A steady stream of new BigQuery features landed through late September and October — you can now chat with your data in plain English, ask it to explain key drivers behind a trend, and the system is getting better at understanding your data on its own.</p>
+    <p><span class="label imp">Why it matters</span>The tools have moved faster than most of our actual workflows. Worth trying Conversational Analytics (BigQuery's chat-with-data feature) on one live dashboard this quarter and seeing if it's ready to use for real.</p>
+    <p class="src-inline">Source: <a href="https://docs.cloud.google.com/bigquery/docs/release-notes" target="_blank" rel="noopener">BigQuery release notes</a></p>
+  </div>
+
+  <div class="item">
+    <h3><span class="no">09</span>Google Ads is pushing further into online shopping</h3>
+    <p><span class="label">What happened</span>Google Ads cleaned up old settings and switched on a one-click checkout feature ("Universal Cart") for US search ads, plus clearer controls for which ad channel gets priority when budgets are tight.</p>
+    <p><span class="label imp">Why it matters</span>Companies managing budget splits across channels should check those new priority settings before the next reporting cycle — the defaults may have changed.</p>
+    <p class="src-inline">Source: <a href="https://relevantaudience.com" target="_blank" rel="noopener">relevantaudience.com</a> · <a href="https://ppcnewsfeed.com" target="_blank" rel="noopener">ppcnewsfeed.com</a></p>
+  </div>
+
+  <h2>Market moves</h2>
+  <div class="quiet"><strong>Nothing worth reporting this month.</strong> No real merger, acquisition, or agency shake-up turned up — just recycled AI statistics dressed up as news. Rather than pad this section, I'm leaving it empty.</div>
+
+  <div class="take">
+    <span class="label-take">My take</span>
+    <p>Nobody's waiting for one big "GPT‑6 moment" anymore — the big labs are just shipping constantly and letting people absorb the changes quietly. And the thing everyone keeps running into isn't the AI itself anymore — it's getting it to actually plug into existing systems and data, safely. That shows up twice this month: once in the agent-adoption surveys, and once in Google quietly moving who controls your consent data. The AI is ready. The plumbing isn't.</p>
+  </div>
+
+  <h4 style="font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--lime); margin:32px 0 14px;">Do this fortnight</h4>
+  <div class="rec">
+    <ol>
+      <li>Check which accounts have consent and IP data sitting in Google Ads now, not just GA4.</li>
+      <li>Double-check GTM container setups against the new tag behaviour while things are quiet.</li>
+      <li>Try BigQuery's chat-with-data feature on one live dashboard, just to see what it can do.</li>
+    </ol>
+  </div>
+  <h4 style="font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--lime); margin:32px 0 14px;">Do this quarter</h4>
+  <div class="rec">
+    <ol>
+      <li>If we've built anything on ChatGPT's free tier, test it again — the model underneath just changed.</li>
+      <li>Keep the measurement framework and cost-vs-benefit review ready for whenever an agent pilot comes up — most companies still can't prove theirs are working.</li>
+      <li>Review channel-priority settings on paid search budgets rather than leaving them on default.</li>
+    </ol>
+  </div>
+
+  <div class="sign">Ngā mihi,<br>Debbie</div>
+
+  <div class="src">
+    <h4>Sources</h4>
+    <ol>
+      <li><a href="https://pricingsaas.com/companies/openai/diffs/2026D281" target="_blank" rel="noopener">pricingsaas.com — OpenAI product-change tracker, 8 Oct 2026</a></li>
+      <li><a href="https://www.orcarouter.ai/blog/claude-news-what-anthropic-shipped-in-october-2026" target="_blank" rel="noopener">OrcaRouter — "What Anthropic shipped in October 2026"</a></li>
+      <li><a href="https://thenewstack.io/claude-dashboards-data-motion/" target="_blank" rel="noopener">The New Stack — Claude Dashboards and Motion detail</a></li>
+      <li><a href="https://www.thestar.com.my/tech/tech-news/2026/10/09/anthropic-launches-dashboard-animation-tools-for-claude" target="_blank" rel="noopener">The Star — Anthropic launches dashboard and animation tools</a></li>
+      <li><a href="https://simplefunctions.dev/answer/grok-grok5" target="_blank" rel="noopener">simplefunctions.dev — Grok 5 release-date prediction market</a></li>
+      <li><a href="https://www.cmswire.com/the-wire/new-liferay-study-finds-54-of-companies-are-running-ai-agents-yet-only-25-measure-their-impact/" target="_blank" rel="noopener">CMSWire — Liferay 2026 Agentic AI Adoption and Governance Report</a></li>
+      <li><a href="https://arcade.dev/blog/5-takeaways-2026-state-of-ai-agents-claude" target="_blank" rel="noopener">Arcade.dev — 5 takeaways from Anthropic's 2026 State of AI Agents Report</a></li>
+      <li><a href="https://support.google.com/analytics/answer/17016975" target="_blank" rel="noopener">support.google.com/analytics — GA4/Ads data-controls consolidation</a></li>
+      <li><a href="https://simoahava.com/analytics/optimized-tagging-experience-google-tag-manager/" target="_blank" rel="noopener">Simo Ahava — GTM gtag merger, 13 Oct 2026</a></li>
+      <li><a href="https://support.google.com/tagmanager/answer/4620708" target="_blank" rel="noopener">support.google.com/tagmanager</a></li>
+      <li><a href="https://docs.cloud.google.com/bigquery/docs/release-notes" target="_blank" rel="noopener">BigQuery release notes</a></li>
+      <li><a href="https://relevantaudience.com" target="_blank" rel="noopener">relevantaudience.com — DV360 / Universal Cart coverage</a></li>
+      <li><a href="https://ppcnewsfeed.com" target="_blank" rel="noopener">ppcnewsfeed.com — Google Ads commerce updates</a></li>
+    </ol>
+  </div>
+
+  <div class="note">Font note: this is set in Hanken Grotesk, the closest free match to Stabil Grotesk. If you've got the actual Stabil font file, send it over and it's a one-line swap.</div>
+  <div class="note">For NZ: nothing above is NZ-specific — all of it comes from global/US sources, so local timing and availability (feature rollouts, pricing, data residency) may lag what's reported here.</div>
+
 </div>
-
-<div class="headlines">
-  <div class="headlines-inner" id="headlinesBox">
-    <div class="headlines-top">
-      <p class="headlines-title"><span class="dot"></span> Pinned Headlines</p>
-      <div class="headlines-save-row" id="headlinesSaveRow">
-        <input type="text" id="boardNameInput" placeholder="Name this set…" maxlength="80">
-        <button class="save-board-btn" id="saveBoardBtn" type="button">💾 Save as version</button>
-      </div>
-    </div>
-    <div id="headlinesContent">
-      <p class="headlines-empty">Hover any story and click the pin icon to feature the full article here.</p>
-    </div>
-    <div class="saved-boards" id="savedBoardsBox"></div>
-  </div>
-</div>
-
-<div class="intro">
-  <p>OpenAI quietly swapped the model behind ChatGPT's unlimited free tier to GPT-6 — the first time it's reached consumer scale rather than a developer preview. Anthropic shipped eight separate things through October with no single flagship release, including Claude Dashboards, a live-data BI tool built to sit on top of enterprise warehouses. Underneath both, Google kept moving who actually controls consent and IP data — out of GA4 and into the linked Ads account — while BigQuery had its busiest month yet for AI-native features. Two independent surveys on AI-agent adoption landed in the same window, and they tell the same story: capability stopped being the bottleneck, and proving the thing actually works is what's left. Every item below earned its place on merit, not just because it happened in the window.</p>
-  <p class="soft">Every card is dated and links directly to its primary source.</p>
-</div>
-
-<div class="statrow">
-  <div class="stat">
-    <span class="num">54%</span>
-    <span class="cap">Of companies running AI agents in production or piloting them — but only a quarter measure whether they're working</span>
-    <span class="date">LIFERAY — AUG 2026, VIA CMSWIRE</span>
-  </div>
-  <div class="stat">
-    <span class="num">46%</span>
-    <span class="cap">Of enterprise AI-agent users now name integration with existing systems — not model capability — as the top barrier</span>
-    <span class="date">ANTHROPIC STATE OF AI AGENTS REPORT — 2026</span>
-  </div>
-  <div class="stat">
-    <span class="num">8</span>
-    <span class="cap">Separate Anthropic product releases through October, with no single flagship model among them</span>
-    <span class="date">ORCAROUTER — OCT 2026</span>
-  </div>
-  <div class="stat">
-    <span class="num">6</span>
-    <span class="cap">Weeks since consolidating consent and IP control into the linked Google Ads account started reaching live accounts</span>
-    <span class="date">GOOGLE — JUN–OCT 2026</span>
-  </div>
-</div>
-
-<!-- ============ AI & AGENTS ============ -->
-<section id="ai-agents" class="cat-teal">
-  <div class="sec-head">
-    <h2>AI &amp; Agents</h2>
-    <span class="sec-tag tag-teal">Platforms</span>
-  </div>
-  <div class="grid">
-    <div class="card" id="card-chatgpts-free-tier-is-now-running-on-gpt-6" data-title="ChatGPT's free tier is now running on GPT-6" data-date="Oct 7–8, 2026 — San Francisco">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-chatgpts-free-tier-is-now-running-on-gpt-6', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 7–8, 2026 — San Francisco</div>
-      <h3>ChatGPT's free tier is now running on GPT-6</h3>
-      <p class="fact">OpenAI switched the model behind unlimited text chats on ChatGPT's Free and Go plans from GPT-5.6 "Luna" to GPT-6, with a UI refresh and rewritten plan taglines alongside it. No price change shipped in the same window.</p>
-      <div class="plain"><span class="label">Implication</span><p>This is the first time GPT-6 has reached consumer scale rather than a developer preview. Anything built or tested against ChatGPT's free-tier behaviour — briefs, comparisons, client-facing demos — should be checked again: the model changed quietly, with no notification to the people using it.</p></div>
-      <a class="source-link" href="https://pricingsaas.com/companies/openai/diffs/2026D281" target="_blank" rel="noopener">Read source <span class="source-name">— PricingSaaS</span> <span class="arrow">→</span></a>
-    </div>
-    <div class="card" id="card-anthropic-shipped-eight-things-in-october-no-flagship-model" data-title="Anthropic shipped eight things in October, no flagship model" data-date="Oct 7–22, 2026 — San Francisco">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-anthropic-shipped-eight-things-in-october-no-flagship-model', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 7–22, 2026 — San Francisco</div>
-      <h3>Anthropic shipped eight things in October, no flagship model</h3>
-      <p class="fact">A fast small model (Claude Haiku 5.5, Oct 7); Docs, Slides and Design made free for everyone (Oct 8); Code Review reaching general availability on Team/Enterprise (Oct 15); a "Duet" feature opening a waitlist, and a security product entering beta (both Oct 21); and the Agent Skills format handed to an open-source foundation under the Linux Foundation (Oct 22).</p>
-      <div class="plain"><span class="label">Implication</span><p>This reads as product polish, not a race for a bigger benchmark number. Docs, Slides and Design going free for everyone is the one worth testing directly — it's a real signal of whether Claude can own a finished deliverable rather than just draft it.</p></div>
-      <a class="source-link" href="https://www.orcarouter.ai/blog/claude-news-what-anthropic-shipped-in-october-2026" target="_blank" rel="noopener">Read source <span class="source-name">— OrcaRouter</span> <span class="arrow">→</span></a>
-    </div>
-    <div class="card" id="card-claude-dashboards-puts-claude-on-top-of-the-warehouse" data-title="Claude Dashboards puts Claude on top of the data warehouse" data-date="Oct 8, 2026 — San Francisco">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-claude-dashboards-puts-claude-on-top-of-the-warehouse', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 8, 2026 — San Francisco</div>
-      <h3>Claude Dashboards puts Claude on top of the data warehouse</h3>
-      <p class="fact">In beta: connect Snowflake, Databricks, Redshift, ClickHouse, or an existing connector like Salesforce, describe what's needed in plain English, and Claude builds a live dashboard. Click a number to see the query behind it, or ask Claude to explain it in words. Charts refresh as source data changes, with a timestamp per chart. Dashboards export into Grafana, Hex, Mixpanel, monday.com, Omni, PostHog and Sigma — Looker, Tableau and Perplexity support is coming later. Claude Motion, a related tool for turning data into short animated clips, entered beta the same day for Team and Enterprise.</p>
-      <div class="plain"><span class="label">Implication</span><p>Positioned to sit alongside BI tools, not replace them — but it's the clearest signal yet of where Anthropic wants Claude sitting. No warehouse connector of the kind this market relies on most is listed yet, so it's not plug-and-play for every stack today. Worth watching for a broader enterprise-BI connector list, or for Claude's own dashboarding to grow enough capability to matter on its own.</p></div>
-      <a class="source-link" href="https://thenewstack.io/claude-dashboards-data-motion/" target="_blank" rel="noopener">Read source <span class="source-name">— The New Stack</span> <span class="arrow">→</span></a>
-    </div>
-    <div class="card" id="card-grok-5-was-talked-about-not-shipped" data-title="Grok 5 was talked about, not shipped" data-date="Through Oct 2026 — undisclosed">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-grok-5-was-talked-about-not-shipped', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Through Oct 2026 — undisclosed</div>
-      <h3>Grok 5 was talked about, not shipped</h3>
-      <p class="fact">Elon Musk has repeated a figure of roughly six trillion parameters for a much larger Grok model through October, with no release. Prediction markets price it at around 86% likely to arrive sometime before 1 January 2027.</p>
-      <div class="plain"><span class="label">Implication</span><p>Nothing to act on yet. Flagging it only so the volume of hype around it doesn't get mistaken for an actual release later.</p></div>
-      <a class="source-link" href="https://simplefunctions.dev/answer/grok-grok5" target="_blank" rel="noopener">Read source <span class="source-name">— Prediction market tracker</span> <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MEASURING MARKETING IMPACT ============ -->
-<section id="impact" class="cat-teal">
-  <div class="sec-head">
-    <h2>Measuring Marketing Impact</h2>
-    <span class="sec-tag tag-teal">Marketing Science &amp; Experimentation</span>
-  </div>
-  <div class="grid">
-    <div class="card" id="card-companies-are-running-agents-not-measuring-them" data-title="Companies are running AI agents — almost nobody is measuring them" data-date="Aug–Oct 2026 — Industry research">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-companies-are-running-agents-not-measuring-them', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Aug–Oct 2026 — Industry research</div>
-      <h3>Companies are running AI agents — almost nobody is measuring them</h3>
-      <p class="fact">A Liferay survey of 500 US companies found 54% running AI agents in production or piloting them (72% in tech, 24% in education), but only 25% measure impact against clear KPIs and only 24% have a company-wide AI usage policy. Separately, Anthropic's own State of AI Agents Report found model capability is no longer the limiting factor — respondents now cite integration with existing systems (46%), data access and quality (42%) and security/compliance (40%) as the real constraints, even as 80% report measurable economic impact today.</p>
-      <div class="plain"><span class="label">Implication</span><p>The gap between "running something" and "proving it works" is now the central measurement question in agentic AI, not a side note. Any cost-vs-benefit case for an agent pilot needs a measurement framework built in from the start, not retrofitted once leadership asks for the number.</p></div>
-      <a class="source-link" href="https://www.cmswire.com/the-wire/new-liferay-study-finds-54-of-companies-are-running-ai-agents-yet-only-25-measure-their-impact/" target="_blank" rel="noopener">Read source <span class="source-name">— CMSWire, on the Liferay report</span> <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ DATA & CLOUD PLATFORMS ============ -->
-<section id="platforms" class="cat-teal">
-  <div class="sec-head">
-    <h2>Data &amp; Cloud Platforms</h2>
-    <span class="sec-tag tag-teal">GCP, Tableau &amp; Snowflake</span>
-  </div>
-  <div class="grid">
-    <div class="card" id="card-bigquery-had-its-busiest-month-yet-for-ai-native-features" data-title="BigQuery had its busiest month yet for AI-native features" data-date="Late Sep – Oct 2026 — Google Cloud">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-bigquery-had-its-busiest-month-yet-for-ai-native-features', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Late Sep – Oct 2026 — Google Cloud</div>
-      <h3>BigQuery had its busiest month yet for AI-native features</h3>
-      <p class="fact">A dense run of releases landed through the window: chat-with-your-data via Conversational Analytics and AI.KEY_DRIVERS, Knowledge Catalog's self-learning context enrichment, reusable column aliases, gemini-embedding-2 reaching general availability, and pipeline metadata enrichment.</p>
-      <div class="plain"><span class="label">Implication</span><p>The tooling has moved faster than most teams' actual workflows. Worth a live trial of Conversational Analytics on one real dashboard this quarter — it's matured enough now to be worth evaluating properly rather than filed as "coming eventually."</p></div>
-      <a class="source-link" href="https://docs.cloud.google.com/bigquery/docs/release-notes" target="_blank" rel="noopener">Read source <span class="source-name">— BigQuery release notes</span> <span class="arrow">→</span></a>
-    </div>
-    <div class="card" id="card-tag-managers-biggest-change-in-years-landed-then-went-quiet" data-title="Tag Manager's biggest change in years landed, then everything went quiet" data-date="Oct 8–13, 2026 — Mountain View">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-tag-managers-biggest-change-in-years-landed-then-went-quiet', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 8–13, 2026 — Mountain View</div>
-      <h3>Tag Manager's biggest change in years landed, then everything went quiet</h3>
-      <p class="fact">Google standardised how tags configure themselves across Tag Manager via <code>gtag('config')</code> on Oct 8, with a direct-send container optimisation following Oct 12. Simo Ahava called it the biggest Tag Manager change in a decade on Oct 13. Nothing further has shipped since.</p>
-      <div class="plain"><span class="label">Implication</span><p>Good window to finish any pending GTM migration work while the platform is stable — worth confirming container setups against the new gtag behaviour this fortnight, before the next change lands.</p></div>
-      <a class="source-link" href="https://simoahava.com/analytics/optimized-tagging-experience-google-tag-manager/" target="_blank" rel="noopener">Read source <span class="source-name">— Simo Ahava</span> <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="activation" class="cat-gold">
-  <div class="sec-head">
-    <h2>Activation</h2>
-    <span class="sec-tag tag-gold">How Campaigns Actually Run</span>
-  </div>
-  <div class="grid">
-    <div class="card" id="card-google-ads-now-controls-consent-and-ip-data-not-ga4" data-title="Google Ads now controls consent and IP data, not GA4" data-date="Jun–Oct 2026 — Mountain View">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-google-ads-now-controls-consent-and-ip-data-not-ga4', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Jun–Oct 2026 — Mountain View</div>
-      <h3>Google Ads now controls consent and IP data, not GA4</h3>
-      <p class="fact">Google has been shifting consent settings and IP address handling out of Analytics and into the linked Google Ads account, a consolidation that started mid-year and kept rolling through October. IPs are now encrypted and sent straight to Ads rather than staying in Analytics.</p>
-      <div class="plain"><span class="label">Implication</span><p>Any consent or IP audit now needs to check the linked Ads account, not just the GA4 property — the control plane has genuinely moved, and GA4-only reviews will miss it.</p></div>
-      <a class="source-link" href="https://support.google.com/analytics/answer/17016975" target="_blank" rel="noopener">Read source <span class="source-name">— Google Analytics Help</span> <span class="arrow">→</span></a>
-    </div>
-    <div class="card" id="card-google-ads-pushes-further-into-online-checkout" data-title="Google Ads pushed further into online checkout" data-date="Oct 26–27, 2026 — Mountain View">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-google-ads-pushes-further-into-online-checkout', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 26–27, 2026 — Mountain View</div>
-      <h3>Google Ads pushed further into online checkout</h3>
-      <p class="fact">DV360 archived legacy line items and Universal Cart went live for US Search (both Oct 26), with channel prioritisation and budget caps now live and an All Conversions submenu shipping Oct 27.</p>
-      <div class="plain"><span class="label">Implication</span><p>Anyone managing budget splits across channels should check the new priority settings before the next reporting cycle — the defaults behind multi-channel budgets may have shifted.</p></div>
-      <a class="source-link" href="https://relevantaudience.com" target="_blank" rel="noopener">Read source <span class="source-name">— Relevant Audience</span> <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-<!-- ============ MARKET STRUCTURE ============ -->
-<section id="market-structure" class="cat-gold">
-  <div class="sec-head">
-    <h2>Market Structure</h2>
-    <span class="sec-tag tag-gold">Vendor Consolidation</span>
-  </div>
-  <div class="grid">
-    <div class="card" id="card-anthropic-set-aside-5-of-the-company-for-public-benefit" data-title="Anthropic set aside 5% of the company for public benefit" data-date="Oct 18, 2026 — San Francisco">
-      <button class="pin-btn" type="button" aria-label="Pin this story to headlines" onclick="togglePin('card-anthropic-set-aside-5-of-the-company-for-public-benefit', this)"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M16 3l5 5-5.5 5.5L17 18l-1 1-5-5-5 5-1-1 5-5-5-5 1-1 5 5L15.5 8 16 3zm-1.5 2.1L11 8.6l2.4 2.4 3.5-3.5-2.4-2.4z"/></svg></button>
-      <div class="date">Oct 18, 2026 — San Francisco</div>
-      <h3>Anthropic set aside 5% of the company for public benefit</h3>
-      <p class="fact">Anthropic committed 5% of company shares to a new, wholly owned LLC built for public-benefit purposes, subject to stockholder approval — with another 2% available at board discretion for every 50% rise in company value above an unpublished baseline.</p>
-      <div class="plain"><span class="label">Implication</span><p>Not a product change, more a reputation and governance move — but it's the kind of detail that shapes how AI labs get discussed in brand-safety and procurement conversations. Worth knowing rather than acting on.</p></div>
-      <a class="source-link" href="https://www.orcarouter.ai/blog/claude-news-what-anthropic-shipped-in-october-2026" target="_blank" rel="noopener">Read source <span class="source-name">— OrcaRouter</span> <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
-
-<section id="regulatory" class="cat-red">
-  <div class="sec-head">
-    <h2>Regulatory</h2>
-    <span class="sec-tag tag-red">Data, AI, PII &amp; Consent</span>
-  </div>
-  <p class="cat-desc" style="margin-top:-6px;">Nothing cleared the bar this window — no new dated regulatory action or enforcement decision surfaced that wasn't already reported last issue. Leaving this empty rather than padding it with August's news again.</p>
-</section>
-
-<!-- ============ EFFECTIVENESS ============ -->
-<section id="effectiveness" class="cat-gold">
-  <div class="sec-head">
-    <h2>Effectiveness Research</h2>
-    <span class="sec-tag tag-gold">Evidence</span>
-  </div>
-  <p class="cat-desc" style="margin-top:-6px;">Nothing new on marketing-effectiveness research specifically this window — the two adoption surveys worth reading this month sit under Measuring Marketing Impact above, since they're about AI agents rather than channel mix.</p>
-</section>
-
-<!-- ============ NZ / LOCAL ============ -->
-<section id="local" class="cat-teal">
-  <div class="sec-head">
-    <h2>NZ / Local</h2>
-    <span class="sec-tag tag-teal">Aotearoa</span>
-  </div>
-  <p class="cat-desc" style="margin-top:-6px;">No NZ-specific development cleared the bar this window — everything above comes from global or US sources, so local timing on feature rollouts, pricing and data residency may lag what's reported here.</p>
-</section>
-
-<footer>
-  <h4>About this briefing</h4>
-  <p>On the Pulse is a strictly last-30-days news pull covering measurement, privacy and AI standards across NZ, Australia, the UK, the US and globally — for anyone working in data, measurement or privacy in media and marketing. Every item is sourced directly from a regulator, standards body, platform, or named publication — never from unverified vendor content — and links to its primary source.</p>
-  <div class="footer-meta">
-    <span>Published Sep 4, 2026</span>
-    <span>Covers Aug 1 – Sep 4, 2026</span>
-    <span>Next issue: Sep 18, 2026</span>
-  </div>
-</footer>
-
-<script>
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('#sectionNav a');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
-  sections.forEach(sec => observer.observe(sec));
-
-  /* ============ PIN / HEADLINES ============ */
-  const PIN_KEY = 'otp_pinned_v1';
-  const BOARDS_KEY = 'otp_boards_v1';
-  const MAX_PINS = 6;
-
-  let viewingBoardId = null; // null = showing live pins; otherwise showing a saved board's snapshot
-
-  function getPinned(){
-    try{ return JSON.parse(localStorage.getItem(PIN_KEY)) || []; }
-    catch(e){ return []; }
-  }
-  function setPinned(arr){
-    localStorage.setItem(PIN_KEY, JSON.stringify(arr));
-  }
-
-  function getBoards(){
-    try{ return JSON.parse(localStorage.getItem(BOARDS_KEY)) || []; }
-    catch(e){ return []; }
-  }
-  function setBoards(arr){
-    localStorage.setItem(BOARDS_KEY, JSON.stringify(arr));
-  }
-
-  function extractCardSnapshot(id){
-    const card = document.getElementById(id);
-    if(!card) return null;
-    const sourceLink = card.querySelector('.source-link');
-    return {
-      date: card.getAttribute('data-date'),
-      titleHTML: card.querySelector('h3').innerHTML,
-      factHTML: card.querySelector('.fact').innerHTML,
-      planHTML: card.querySelector('.plain').innerHTML,
-      sourceHref: sourceLink ? sourceLink.getAttribute('href') : '#',
-      sourceHTML: sourceLink ? sourceLink.innerHTML : ''
-    };
-  }
-
-  function itemMarkup(item, unpinId){
-    const unpinBtn = unpinId
-      ? `<button class="hl-unpin" type="button" aria-label="Unpin this story" data-unpin="${unpinId}">×</button>`
-      : '';
-    return `
-      <article class="headline-item">
-        ${unpinBtn}
-        <div class="hl-date">${item.date}</div>
-        <h3 class="hl-title">${item.titleHTML}</h3>
-        <p class="hl-fact">${item.factHTML}</p>
-        <div class="hl-plain">${item.planHTML}</div>
-        <a class="source-link hl-source" href="${item.sourceHref}" target="_blank" rel="noopener">${item.sourceHTML}</a>
-      </article>
-    `;
-  }
-
-  function renderHeadlines(){
-    const content = document.getElementById('headlinesContent');
-    const saveRow = document.getElementById('headlinesSaveRow');
-
-    if(viewingBoardId){
-      const board = getBoards().find(b => b.id === viewingBoardId);
-      saveRow.style.display = 'none';
-      if(!board){
-        viewingBoardId = null;
-        return renderHeadlines();
-      }
-      const grid = board.items.map(item => itemMarkup(item, null)).join('');
-      content.innerHTML = `
-        <div class="viewing-banner">
-          <span>Viewing saved version: <b>${board.name}</b> — saved ${formatBoardTime(board.savedAt)}</span>
-          <button class="back-to-live-btn" id="backToLiveBtn" type="button">← Back to live pins</button>
-        </div>
-        <div class="headlines-grid">${grid}</div>
-      `;
-      document.getElementById('backToLiveBtn').addEventListener('click', () => {
-        viewingBoardId = null;
-        renderHeadlines();
-      });
-      return;
-    }
-
-    saveRow.style.display = 'flex';
-    const pinned = getPinned();
-    document.getElementById('saveBoardBtn').disabled = pinned.length === 0;
-
-    if(pinned.length === 0){
-      content.innerHTML = '<p class="headlines-empty">Hover any story and click the pin icon to feature the full article here.</p>';
-      renderSavedBoardsList();
-      return;
-    }
-    const grid = pinned.map(id => {
-      const snap = extractCardSnapshot(id);
-      return snap ? itemMarkup(snap, id) : '';
-    }).join('');
-    content.innerHTML = `<div class="headlines-grid">${grid}</div>`;
-
-    content.querySelectorAll('[data-unpin]').forEach(btn => {
-      btn.addEventListener('click', () => unpin(btn.getAttribute('data-unpin')));
-    });
-
-    renderSavedBoardsList();
-  }
-
-  function formatBoardTime(iso){
-    const d = new Date(iso);
-    if(isNaN(d)) return '';
-    return d.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-  }
-
-  function renderSavedBoardsList(){
-    const box = document.getElementById('savedBoardsBox');
-    const boards = getBoards();
-    if(boards.length === 0){
-      box.innerHTML = '';
-      return;
-    }
-    const sorted = [...boards].sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
-    box.innerHTML = `
-      <p class="saved-boards-label">Saved versions</p>
-      ${sorted.map(b => `
-        <div class="board-row">
-          <div class="board-info">
-            <span class="board-name">${b.name}</span>
-            <span class="board-meta">${formatBoardTime(b.savedAt)} · ${b.items.length} ${b.items.length === 1 ? 'story' : 'stories'}</span>
-          </div>
-          <div class="board-actions">
-            <button class="board-btn" type="button" data-view="${b.id}">View</button>
-            <button class="board-btn delete" type="button" data-delete="${b.id}">Delete</button>
-          </div>
-        </div>
-      `).join('')}
-    `;
-    box.querySelectorAll('[data-view]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewingBoardId = btn.getAttribute('data-view');
-        renderHeadlines();
-      });
-    });
-    box.querySelectorAll('[data-delete]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-delete');
-        setBoards(getBoards().filter(b => b.id !== id));
-        if(viewingBoardId === id) viewingBoardId = null;
-        renderHeadlines();
-      });
-    });
-  }
-
-  function saveCurrentAsBoard(){
-    const nameInput = document.getElementById('boardNameInput');
-    const name = nameInput.value.trim();
-    const pinned = getPinned();
-    if(pinned.length === 0) return;
-    if(!name){
-      nameInput.focus();
-      return;
-    }
-    const items = pinned.map(id => extractCardSnapshot(id)).filter(Boolean);
-    const board = {
-      id: 'board-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8),
-      name,
-      savedAt: new Date().toISOString(),
-      items
-    };
-    const boards = getBoards();
-    boards.push(board);
-    setBoards(boards);
-    nameInput.value = '';
-    renderSavedBoardsList();
-  }
-
-  function syncButtonState(id){
-    const card = document.getElementById(id);
-    if(!card) return;
-    const btn = card.querySelector('.pin-btn');
-    const pinned = getPinned();
-    if(btn) btn.classList.toggle('is-pinned', pinned.includes(id));
-  }
-
-  function unpin(id){
-    let pinned = getPinned().filter(x => x !== id);
-    setPinned(pinned);
-    syncButtonState(id);
-    renderHeadlines();
-  }
-
-  function togglePin(id, btnEl){
-    let pinned = getPinned();
-    if(pinned.includes(id)){
-      pinned = pinned.filter(x => x !== id);
-    } else {
-      if(pinned.length >= MAX_PINS) pinned.shift();
-      pinned.push(id);
-      const card = document.getElementById(id);
-      if(card){
-        card.classList.add('just-pinned');
-        setTimeout(() => card.classList.remove('just-pinned'), 650);
-      }
-    }
-    setPinned(pinned);
-    if(btnEl) btnEl.classList.toggle('is-pinned', pinned.includes(id));
-    renderHeadlines();
-  }
-
-  document.getElementById('saveBoardBtn').addEventListener('click', saveCurrentAsBoard);
-  document.getElementById('boardNameInput').addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') saveCurrentAsBoard();
-  });
-
-  // restore pin state on load
-  document.querySelectorAll('.card[id]').forEach(card => syncButtonState(card.id));
-  renderHeadlines();
-
-</script>
-
 </body>
 </html>
